@@ -8,11 +8,11 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
-// mongoose.connect(`mongodb://localhost:27017/merncafe`).then(() => {
-//   app.listen(8080, () => {
-//     console.log("Server started");
-//   });
-// });
+mongoose.connect(`mongodb://localhost:27017/merncafe`).then(() => {
+  app.listen(8081, () => {
+    console.log("Server started");
+  });
+});
 
 // mongoose
 //   .connect(process.env.MONGODB_URL)
@@ -22,17 +22,17 @@ app.use(express.json());
 //     });
 //   });
 
-const dbuser = encodeURIComponent(process.env.DBUSER);
-const dbpass = encodeURIComponent(process.env.DBPASS);
+// const dbuser = encodeURIComponent(process.env.DBUSER);
+// const dbpass = encodeURIComponent(process.env.DBPASS);
 
-mongoose
-  .connect(
-    `mongodb+srv://${dbuser}:${dbpass}@cluster0.9rhplrk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
-  )
-  .then(() => {
-    app.listen(8080, () => {
-      console.log("Server started");
-    });
-  });
+// mongoose
+//   .connect(
+//     `mongodb+srv://${dbuser}:${dbpass}@cluster0.9rhplrk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+//   )
+//   .then(() => {
+//     app.listen(8080, () => {
+//       console.log("Server started");
+//     });
+//   });
 
 app.use("/api/users", userRouter);
