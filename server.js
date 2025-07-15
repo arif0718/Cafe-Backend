@@ -14,25 +14,25 @@ app.use(express.json());
 //   });
 // });
 
-mongoose
-  .connect(process.env.MONGODB_URL)
-  .then(() => {
-    app.listen(8081, () => {
-      console.log("Server started");
-    });
-  });
-
-// const dbuser = encodeURIComponent(process.env.DBUSER);
-// const dbpass = encodeURIComponent(process.env.DBPASS);
-
 // mongoose
-//   .connect(
-//     `mongodb+srv://${dbuser}:${dbpass}@cluster0.9rhplrk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
-//   )
+//   .connect(process.env.MONGODB_URL)
 //   .then(() => {
-//     app.listen(8080, () => {
+//     app.listen(8081, () => {
 //       console.log("Server started");
 //     });
 //   });
+
+const dbuser = encodeURIComponent(process.env.DBUSER);
+const dbpass = encodeURIComponent(process.env.DBPASS);
+
+mongoose
+  .connect(
+    `mongodb+srv://${dbuser}:${dbpass}@cluster0.9rhplrk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+  )
+  .then(() => {
+    app.listen(8080, () => {
+      console.log("Server started");
+    });
+  });
 
 app.use("/api/users", userRouter);
