@@ -8,19 +8,19 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
-mongoose.connect(`mongodb://localhost:27017/merncafe`).then(() => {
-  app.listen(8081, () => {
-    console.log("Server started");
-  });
-});
-
-// mongoose
-//   .connect(process.env.MONGODB_URL)
-//   .then(() => {
-//     app.listen(8081, () => {
-//       console.log("Server started");
-//     });
+// mongoose.connect(`mongodb://localhost:27017/merncafe`).then(() => {
+//   app.listen(8081, () => {
+//     console.log("Server started");
 //   });
+// });
+
+mongoose
+  .connect(process.env.MONGODB_URL)
+  .then(() => {
+    app.listen(8081, () => {
+      console.log("Server started");
+    });
+  });
 
 // const dbuser = encodeURIComponent(process.env.DBUSER);
 // const dbpass = encodeURIComponent(process.env.DBPASS);
